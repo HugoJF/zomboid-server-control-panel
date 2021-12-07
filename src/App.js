@@ -16,7 +16,7 @@ function App() {
     const turnOn = useTurnOn();
     const turnOff = useTurnOff();
     const [lastRequest, setLastRequest] = useState(0);
-    const [requesting, setRequest] = useState(false);
+    const [requesting, setRequesting] = useState(false);
 
     const {
         stackStatus,
@@ -43,7 +43,7 @@ function App() {
     const draining = stopped && (!stackStable || task || cluster);
 
     useInterval(refreshStatus, booting ? 5000 : 60000);
-    useInterval(refreshRequest, 1000);
+    useInterval(refreshRequesting, 1000);
 
     function recentlyRequested() {
         return Date.now() - lastRequest < 30000
@@ -53,8 +53,8 @@ function App() {
         queryClient.invalidateQueries('status');
     }
 
-    function refreshRequest() {
-        setRequest(recentlyRequested());
+    function refreshRequesting() {
+        setRequesting(recentlyRequested());
     }
 
     async function requestTurnOn() {
@@ -64,6 +64,7 @@ function App() {
 
         await turnOn.mutateAsync();
         setLastRequest(Date.now());
+        refreshRequesting()
     }
 
     async function requestTurnOff() {
@@ -73,6 +74,7 @@ function App() {
 
         await turnOff.mutateAsync();
         setLastRequest(Date.now());
+        refreshRequesting()
     }
 
     return (
@@ -112,7 +114,6 @@ function App() {
 
             {/* Off button */}
             {online && <Button
-                disabled
                 loading={requesting}
                 onClick={() => requestTurnOff()}
             >
@@ -153,7 +154,7 @@ function App() {
                 <Step
                     task="Encerrando servidor"
                     finished="Servidor encerrado"
-                    done={online}
+                    done={!online}
                 />
                 <Step
                     task="Finalizando instância"
