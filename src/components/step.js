@@ -1,5 +1,5 @@
-import {Check} from "./Check";
-import {Spinner} from "./Spinner";
+import {Check} from "./check";
+import {Spinner} from "./spinner";
 
 export function Step({task, finished, done = false}) {
     return <li className="flex items-center space-x-4">

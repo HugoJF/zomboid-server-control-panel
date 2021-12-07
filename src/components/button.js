@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import {Spinner} from "../Spinner";
+import {Spinner} from "./spinner";
 
 export function Button({onClick, children, loading, disabled}) {
     return <button

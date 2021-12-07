@@ -1,5 +1,5 @@
-import {Spinner} from "./Spinner";
-import {Step} from "./Step";
+import {Spinner} from "./components/spinner";
+import {Step} from "./components/step";
 import {useStatus} from "./queries/useStatus";
 import useInterval from 'react-useinterval';
 import {useQueryClient} from "react-query";
@@ -62,9 +62,9 @@ function App() {
             return;
         }
 
-        await turnOn.mutateAsync();
         setLastRequest(Date.now());
         refreshRequesting()
+        await turnOn.mutateAsync();
     }
 
     async function requestTurnOff() {
@@ -72,9 +72,9 @@ function App() {
             return;
         }
 
-        await turnOff.mutateAsync();
         setLastRequest(Date.now());
         refreshRequesting()
+        await turnOff.mutateAsync();
     }
 
     return (
@@ -159,12 +159,12 @@ function App() {
                 <Step
                     task="Finalizando instância"
                     finished="Instância finalizada"
-                    done={task}
+                    done={!task}
                 />
                 <Step
                     task="Drenando cluster"
                     finished="Cluster drenado"
-                    done={cluster}
+                    done={!cluster}
                 />
             </StepContainer>}
         </div>

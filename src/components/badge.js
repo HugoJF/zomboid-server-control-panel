@@ -1,4 +1,4 @@
-import {Spinner} from "../Spinner";
+import {Spinner} from "./spinner";
 import clsx from "clsx";
 
 const colors = {
