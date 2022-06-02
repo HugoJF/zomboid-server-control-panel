@@ -80,7 +80,7 @@ function App() {
     return (
         <div className="flex flex-col items-center space-y-8 pt-8">
             <h1 className="text-5xl text-white tracking-tighter font-mono font-bold select-all">
-                minecraft.aws.hugo.dev.br
+                zomboid.aws.hugo.dev.br
             </h1>
 
             {/* Loading */}
