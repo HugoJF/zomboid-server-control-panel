@@ -101,7 +101,7 @@ function App() {
                 disabled
                 loading
             >
-                Iniciando...
+                Starting...
             </Button>}
 
             {/* Start button */}
