@@ -109,7 +109,7 @@ function App() {
                 onClick={() => requestTurnOn()}
                 loading={requesting}
             >
-                Iniciar
+                Start
             </Button>}
 
             {/* Off button */}
@@ -117,29 +117,29 @@ function App() {
                 loading={requesting}
                 onClick={() => requestTurnOff()}
             >
-                Desligar
+                Stop
             </Button>}
 
             {/* Starting steps */}
             {booting && <StepContainer>
                 <Step
-                    task="Atualizando stack"
-                    finished="Stack atualizada"
+                    task="Updating stack"
+                    finished="Stack updated"
                     done={stackStable}
                 />
                 <Step
-                    task="Aguardando cluster"
+                    task="Waiting cluster"
                     finished="Cluster online"
                     done={cluster}
                 />
                 <Step
-                    task="Iniciando container"
-                    finished="Container online"
+                    task="Initializing container"
+                    finished="Container running"
                     done={task}
                 />
                 <Step
-                    task="Aguardando resposta"
-                    finished="Pronto para conexão"
+                    task="Waiting for heartbeat"
+                    finished="Ready"
                     done={online}
                 />
             </StepContainer>}
@@ -147,23 +147,23 @@ function App() {
             {/* Draining steps */}
             {draining && <StepContainer>
                 <Step
-                    task="Atualizando stack"
-                    finished="Stack atualizada"
+                  task="Updating stack"
+                  finished="Stack updated"
                     done={stackStable}
                 />
                 <Step
-                    task="Encerrando servidor"
-                    finished="Servidor encerrado"
+                    task="Stopping server"
+                    finished="Server stopped"
                     done={!online}
                 />
                 <Step
-                    task="Finalizando instância"
-                    finished="Instância finalizada"
+                    task="Deprovisioning instance"
+                    finished="Instance deprovisioned"
                     done={!task}
                 />
                 <Step
-                    task="Drenando cluster"
-                    finished="Cluster drenado"
+                    task="Draining cluster"
+                    finished="Cluster drained"
                     done={!cluster}
                 />
             </StepContainer>}
